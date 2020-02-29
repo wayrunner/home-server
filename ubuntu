@@ -35,6 +35,9 @@ sudo chmod +x /usr/local/bin/docker-compose
 git clone https://github.com/damonmorgan/home-server.git
 git clone https://github.com/damonmorgan/entertainer.git
 
+sudo chmod +x home-server/update
+sudo chmod +x entertainer/update
+
 # update port for sshd
 #
 # setup drive mounts
