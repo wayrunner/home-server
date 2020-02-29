@@ -46,12 +46,11 @@ if [[ -z $(ls | grep 'entertainer') ]]; then
   git clone https://github.com/damonmorgan/entertainer.git
 else
   echo "Update Repos"
-  cd home-server
+  cd ~/home-server
   git pull
-  cd ..
-  cd entertainer
+  cd ~/entertainer
   git pull
-  cd ..
+  cd ~
 fi
 
 # update sshd_config
