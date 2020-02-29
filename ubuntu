@@ -38,7 +38,15 @@ git clone https://github.com/damonmorgan/entertainer.git
 sudo chmod +x home-server/update
 sudo chmod +x entertainer/update
 
-# update port for sshd
+# update sshd_config
+sudo cp -p /etc/ssh/sshd_config /etc/ssh/sshd_config.old
+sudo sed -ri 's/^#?Port .*/Port 57400/' /etc/ssh/sshd_config
+sudo sed -ri 's/^#?PermitRootLogin .*/PermitRootLogin no/' /etc/ssh/sshd_config
+sudo sed -ri 's/^#?PubkeyAuthentication .*/PubkeyAuthentication yes/' /etc/ssh/sshd_config
+sudo sed -ri 's/^#?PasswordAuthentication .*/PasswordAuthentication no/' /etc/ssh/sshd_config
+sudo sed -i "\$aAllowUsers damon" /etc/ssh/sshd_config
+sudo sed -i "\$aProtocol 2" /etc/ssh/sshd_config
+
 #
 # setup drive mounts
 #
