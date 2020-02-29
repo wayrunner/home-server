@@ -11,9 +11,10 @@ services:
     volumes:
       - ${SHARE_DATA_PATH}:/media
     environment:
-      TZ:${TZ}
-      USERID:${PUID}
-      GROUPID:${PGID}
+      USERID:1000
+      GROUPID:1000
+      RECYCLE:""
+      PERMISSIONS:""
     restart: unless-stopped
 
   nfs:
