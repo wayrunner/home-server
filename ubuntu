@@ -87,3 +87,6 @@ sudo apparmor_parser -r -W home-server/apparmor-nfs
 # setup wireguard
 echo "Setup wireguard"
 #
+
+echo "cleanup"
+sudo apt-get autoremove
