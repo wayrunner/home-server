@@ -1,0 +1,31 @@
+version: "3.5"
+
+services:
+
+  samba:
+    container_name: samba
+    image: dperson/samba
+    ports:
+      - "139:139/tcp"
+      - "445:445/tcp"
+    volumes:
+      - ${SHARE_DATA_PATH}:/media
+    environment:
+      TZ:${TZ}
+      USERID:${PUID}
+      GROUPID:${PGID}
+      RECYCLE: ""
+      PERMISSIONS: ""
+    restart: unless-stopped
+
+  nfs:
+    container_name: nfs
+    image: erichough/nfs-server
+    volumes:
+      - ${SHARE_DATA_PATH}:/media
+      - /lib/modules:/lib/modules:ro
+    cap_add:
+      - SYS_ADMIN
+      - SYS_MODULE
+    ports:
+      - "2049:2049"
