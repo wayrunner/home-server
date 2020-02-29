@@ -14,8 +14,8 @@ services:
       TZ:${TZ}
       USERID:${PUID}
       GROUPID:${PGID}
-      RECYCLE: ""
-      PERMISSIONS: ""
+      RECYCLE:""
+      PERMISSIONS:""
     restart: unless-stopped
 
   nfs:
