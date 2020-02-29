@@ -14,7 +14,8 @@ services:
     environment:
       USERID: "1000"
       GROUPID: "1000"
-      SHARE: "media;/media;yes;no;yes;all;none;;media"
+      SHARE: "buffalo;/media/wdred-alpha/buffalo;yes;no;yes;all;none;;buffalo"
+      SHARE1: "maxtor;/media/wdred-alpha/maxtor;yes;no;yes;all;none;;maxtor"
     restart: unless-stopped
 
   #nfs:
