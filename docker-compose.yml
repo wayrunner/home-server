@@ -20,6 +20,7 @@ services:
     image: erichough/nfs-server
     volumes:
       - ${SHARE_DATA_PATH}:/media
+      - ${EXPORTS_FILE:/etc/exports:ro
       - /lib/modules:/lib/modules:ro
     cap_add:
       - SYS_ADMIN
