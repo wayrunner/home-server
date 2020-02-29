@@ -25,9 +25,9 @@ services:
       #- ${SHARE_DATA_PATH}:/media
       #- /lib/modules:/lib/modules:ro
     #environment:
-      #NFS_EXPORT_1: "/media/wdred-alpha 192.168.0.0/255.255.255.0(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)"
-      #NFS_EXPORT_2: "/media/wdred-bravo 192.168.0.0/255.255.255.0(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)"
-      #NFS_EXPORT_3: "/media/wdred-charlie 192.168.0.0/255.255.255.0(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)"
+      #NFS_EXPORT_0: "/media/wdred-alpha 192.168.0.0/255.255.255.0(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)"
+      #NFS_EXPORT_1: "/media/wdred-bravo 192.168.0.0/255.255.255.0(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)"
+      #NFS_EXPORT_2: "/media/wdred-charlie 192.168.0.0/255.255.255.0(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)"
     #cap_add:
       #- SYS_ADMIN
       #- SYS_MODULE
