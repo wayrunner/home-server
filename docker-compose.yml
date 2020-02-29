@@ -31,4 +31,6 @@ services:
       - SYS_ADMIN
     ports:
       - "2049:2049"
+    security_opt:
+      - apparmor=erichough-nfs
     restart: unless-stopped

@@ -10,7 +10,8 @@ sudo apt-get install \
   gnupg-agent \
   software-properties-common \
   jq \
-  wireguard
+  wireguard \
+  apparmor-utils
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
@@ -56,6 +57,7 @@ sudo sed -i "\$a/dev/disk/by-uuid/40678ee1-1a47-4e6f-baca-7d1befeb99c5 /media/wd
 
 # setup nfs
 sudo modprobe {nfs,nfsd}
+sudo apparmor_parser -r -W home-server/apparmor-nfs
 
 # setup wireguard
 #
