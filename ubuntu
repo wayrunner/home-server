@@ -45,8 +45,15 @@ sudo sed -i "\$aAllowUsers damon" /etc/ssh/sshd_config
 sudo sed -i "\$aProtocol 2" /etc/ssh/sshd_config
 sudo service ssh restart
 
-# setup drive mounts
-#
+# setup fstab
+sudo mkdir /media/wdred-alpha
+sudo mkdir /media/wdred-bravo
+sudo mkdir /media/wdred-charlie
+
+sudo sed -i "\$a/dev/disk/by-uuid/91f79fb4-6a01-4dbf-88f7-01b493af192f /media/wdred-alpha ext4 defaults 0 2" /etc/fstab
+sudo sed -i "\$a/dev/disk/by-uuid/02459b4b-6fbd-4edc-8f1e-8450fa3d55ee /media/wdred-bravo ext4 defaults 0 2" /etc/fstab
+sudo sed -i "\$a/dev/disk/by-uuid/40678ee1-1a47-4e6f-baca-7d1befeb99c5 /media/wdred-charlie ext4 defaults 0 2" /etc/fstab
+
 # setup samba
 #
 # setup nfs
