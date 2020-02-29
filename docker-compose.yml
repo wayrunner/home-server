@@ -6,14 +6,15 @@ services:
     container_name: samba
     image: dperson/samba
     ports:
-      - "139:139/tcp"
-      - "445:445/tcp"
+      - "139:139"
+      - "445:445"
     volumes:
       - ${SHARE_DATA_PATH}:/media
     environment:
       USERID: "1000"
       GROUPID: "1000"
-      SHARE: "smbmedia;/media;yes;no;yes;all"
+      RECYCLE: ""
+      SHARE: "media;/media;yes;no;yes;all;none;;media"
     restart: unless-stopped
 
   nfs:
