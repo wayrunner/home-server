@@ -13,6 +13,7 @@ services:
     environment:
       USERID: "1000"
       GROUPID: "1000"
+      SHARE: "smbmedia;/media;yes;no;yes;all"
     restart: unless-stopped
 
   nfs:
@@ -20,10 +21,12 @@ services:
     image: erichough/nfs-server
     volumes:
       - ${SHARE_DATA_PATH}:/media
-      - ${EXPORTS_FILE}:/etc/exports:ro
       - /lib/modules:/lib/modules:ro
+    environment:
+      NFS_EXPORT_1: "/media 192.168.0.0/255.255.255.0(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)"
     cap_add:
       - SYS_ADMIN
       - SYS_MODULE
     ports:
       - "2049:2049"
+    restart: unless-stopped
