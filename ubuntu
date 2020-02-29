@@ -46,6 +46,7 @@ sudo sed -ri 's/^#?PubkeyAuthentication .*/PubkeyAuthentication yes/' /etc/ssh/s
 sudo sed -ri 's/^#?PasswordAuthentication .*/PasswordAuthentication no/' /etc/ssh/sshd_config
 sudo sed -i "\$aAllowUsers damon" /etc/ssh/sshd_config
 sudo sed -i "\$aProtocol 2" /etc/ssh/sshd_config
+sudo service ssh restart
 
 #
 # setup drive mounts

@@ -5,6 +5,7 @@ services:
   samba:
     container_name: samba
     image: dperson/samba
+    command: '-p -r'
     ports:
       - "139:139"
       - "445:445"
@@ -13,7 +14,6 @@ services:
     environment:
       USERID: "1000"
       GROUPID: "1000"
-      RECYCLE: ""
       SHARE: "media;/media;yes;no;yes;all;none;;media"
     restart: unless-stopped
 
