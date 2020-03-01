@@ -17,10 +17,3 @@ What is installed
 * wireguard server
 * sshd
 * fstab
-
-* Configure .env with your local parameters.
-```
-cat <<EOT >> .env
-SHARE_DATA_PATH=/media
-EOT
-```
