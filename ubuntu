@@ -14,8 +14,8 @@ sudo apt-get install \
   software-properties-common \
   jq \
   wireguard \
-  apparmor-utils \
-  lxc
+  rpcbind \
+  nfs-kernel-server
 
 if [[ -z $(docker --version | grep 'Docker version') ]]; then
   echo "Install Docker"
@@ -80,9 +80,14 @@ fi
 
 # setup nfs
 echo "Setup nfs"
-sudo modprobe nfs
-sudo modprobe nfsd
-sudo apparmor_parser -r -W home-server/apparmor-nfs
+if [[ -z $(sudo cat /etc/exports | grep 'alpha') ]]; then
+  echo "Update exports"
+  sudo touch /etc/exports
+  sudo sed -i "\$a/media/wdred-alpha 192.168.0.0/255.255.255.0(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)" /etc/exports
+  sudo sed -i "\$a/media/wdred-bravo 192.168.0.0/255.255.255.0(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)" /etc/exports
+  sudo sed -i "\$a/media/wdred-charlie 192.168.0.0/255.255.255.0(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)" /etc/exports
+  sudo systemctl start nfs-kernel-server.service
+fi
 
 # setup wireguard
 echo "Setup wireguard"

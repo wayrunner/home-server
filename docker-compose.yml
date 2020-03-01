@@ -18,22 +18,22 @@ services:
       SHARE1: "maxtor;/media/wdred-alpha/maxtor;yes;no;yes;all;none;;maxtor"
     restart: unless-stopped
 
-  nfs:
-    container_name: nfs
-    image: erichough/nfs-server
-    volumes:
-      - /media:/media
-      - /lib/modules:/lib/modules:ro
-    environment:
-      NFS_DISABLE_VERSION_3: "1"
-      NFS_EXPORT_0: "/media/wdred-alpha *(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)"
-      NFS_EXPORT_1: "/media/wdred-bravo *(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)"
-      NFS_EXPORT_2: "/media/wdred-charlie *(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)"
-    cap_add:
-      - SYS_ADMIN
-      - SYS_MODULE
-    ports:
-      - "2049:2049"
-    security_opt:
-      - apparmor=erichough-nfs
-    restart: unless-stopped
+  #nfs:
+    #container_name: nfs
+    #image: erichough/nfs-server
+    #volumes:
+      #- /media:/media
+      #- /lib/modules:/lib/modules:ro
+    #environment:
+      #NFS_DISABLE_VERSION_3: "1"
+      #NFS_EXPORT_0: "/media/wdred-alpha *(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)"
+      #NFS_EXPORT_1: "/media/wdred-bravo *(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)"
+      #NFS_EXPORT_2: "/media/wdred-charlie *(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)"
+    #cap_add:
+      #- SYS_ADMIN
+      #- SYS_MODULE
+    #ports:
+      #- "2049:2049"
+    #security_opt:
+      #- apparmor=erichough-nfs
+    #restart: unless-stopped
