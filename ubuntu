@@ -100,6 +100,7 @@ if [[ -z $(sudo cat /etc/samba/smb.conf | grep 'alpha') ]]; then
   sudo -- bash -c 'echo  "  comment = Buffalo" >> /etc/samba/smb.conf'
   sudo -- bash -c 'echo  "  path = /media/wdred-alpha/buffalo" >> /etc/samba/smb.conf'
   sudo -- bash -c 'echo  "  read only = no" >> /etc/samba/smb.conf'
+  sudo -- bash -c 'echo  "  browsable = yes" >> /etc/samba/smb.conf'
   sudo -- bash -c 'echo  "  guest only = yes" >> /etc/samba/smb.conf'
   sudo -- bash -c 'echo  "  guest ok = yes" >> /etc/samba/smb.conf'
   sudo -- bash -c 'echo  "" >> /etc/samba/smb.conf'
@@ -107,8 +108,10 @@ if [[ -z $(sudo cat /etc/samba/smb.conf | grep 'alpha') ]]; then
   sudo -- bash -c 'echo  "  comment = Maxtor" >> /etc/samba/smb.conf'
   sudo -- bash -c 'echo  "  path = /media/wdred-alpha/maxtor" >> /etc/samba/smb.conf'
   sudo -- bash -c 'echo  "  read only = no" >> /etc/samba/smb.conf'
+  sudo -- bash -c 'echo  "  browsable = yes" >> /etc/samba/smb.conf'
   sudo -- bash -c 'echo  "  guest only = yes" >> /etc/samba/smb.conf'
   sudo -- bash -c 'echo  "  guest ok = yes" >> /etc/samba/smb.conf'
+  sudo service smbd restart
 fi
 
 # setup wireguard
