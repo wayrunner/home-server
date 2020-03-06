@@ -15,7 +15,8 @@ sudo apt-get install \
   jq \
   wireguard \
   rpcbind \
-  nfs-kernel-server
+  nfs-kernel-server \
+  samba
 
 if [[ -z $(docker --version | grep 'Docker version') ]]; then
   echo "Install Docker"
@@ -89,9 +90,14 @@ if [[ -z $(sudo cat /etc/exports | grep 'alpha') ]]; then
   sudo systemctl start nfs-kernel-server.service
 fi
 
+# setup samba
+echo "Setup samba"
+if [[ -z $(sudo cat /etc/samba/smb.conf | grep 'alpha') ]]; then
+  echo "Update smb.conf"
+fi
+
 # setup wireguard
 echo "Setup wireguard"
-#
 
 echo "cleanup"
 sudo apt-get autoremove
