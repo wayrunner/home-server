@@ -5,8 +5,9 @@ Setup home server
 
 Installation
 ------------
-
-  bash <(curl -s https://raw.githubusercontent.com/damonmorgan/home-server/master/ubuntu)
+```.bash
+bash <(curl -s https://raw.githubusercontent.com/wayrunner/home-server/master/rpi)
+```
   
 Create empty `ssh` file in boot directory and add wifi information to `wpa_supplicant.conf`: 
 ```
@@ -41,5 +42,7 @@ BACKUP_PATH=/media/storage
 PGID=$(id -g $USER)
 PUID=$UID
 TZ="Europe/London"
+PIA_PASSWORD=M86J5mwtpr
+PIA_USERNAME=p2705804
 EOT
 ```
