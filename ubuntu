@@ -41,15 +41,12 @@ if [[ -z $(docker --version | grep 'Docker version') ]]; then
   sudo chmod +x /usr/local/bin/docker-compose
 fi
 
-if [[ -z $(ls | grep 'entertainer') ]]; then
+if [[ -z $(ls | grep 'home-server') ]]; then
   echo "Clone Repos"
-  git clone https://github.com/damonmorgan/home-server.git
-  git clone https://github.com/damonmorgan/entertainer.git
+  git clone https://github.com/wayrunner/home-server.git
 else
   echo "Update Repos"
   cd ~/home-server
-  git pull
-  cd ~/entertainer
   git pull
   cd ~
 fi
@@ -61,8 +58,8 @@ if [[ -z $(sudo cat /etc/ssh/sshd_config | grep 'damon') ]]; then
   sudo sed -ri 's/^#?Port .*/Port 57400/' /etc/ssh/sshd_config
   sudo sed -ri 's/^#?PermitRootLogin .*/PermitRootLogin no/' /etc/ssh/sshd_config
   sudo sed -ri 's/^#?PubkeyAuthentication .*/PubkeyAuthentication yes/' /etc/ssh/sshd_config
-  sudo sed -ri 's/^#?PasswordAuthentication .*/PasswordAuthentication no/' /etc/ssh/sshd_config
-  sudo sed -i "\$aAllowUsers damon" /etc/ssh/sshd_config
+#  sudo sed -ri 's/^#?PasswordAuthentication .*/PasswordAuthentication no/' /etc/ssh/sshd_config
+#  sudo sed -i "\$aAllowUsers damon" /etc/ssh/sshd_config
   sudo sed -i "\$aProtocol 2" /etc/ssh/sshd_config
   sudo service ssh restart
 fi
@@ -74,9 +71,9 @@ if [[ -z $(sudo cat /etc/fstab | grep 'alpha') ]]; then
   sudo mkdir /media/wdred-bravo
   sudo mkdir /media/wdred-charlie
 
-  sudo sed -i "\$a/dev/disk/by-uuid/91f79fb4-6a01-4dbf-88f7-01b493af192f /media/wdred-alpha ext4 defaults 0 2" /etc/fstab
-  sudo sed -i "\$a/dev/disk/by-uuid/02459b4b-6fbd-4edc-8f1e-8450fa3d55ee /media/wdred-bravo ext4 defaults 0 2" /etc/fstab
-  sudo sed -i "\$a/dev/disk/by-uuid/40678ee1-1a47-4e6f-baca-7d1befeb99c5 /media/wdred-charlie ext4 defaults 0 2" /etc/fstab
+#  sudo sed -i "\$a/dev/disk/by-uuid/91f79fb4-6a01-4dbf-88f7-01b493af192f /media/wdred-alpha ext4 defaults 0 2" /etc/fstab
+#  sudo sed -i "\$a/dev/disk/by-uuid/02459b4b-6fbd-4edc-8f1e-8450fa3d55ee /media/wdred-bravo ext4 defaults 0 2" /etc/fstab
+#  sudo sed -i "\$a/dev/disk/by-uuid/40678ee1-1a47-4e6f-baca-7d1befeb99c5 /media/wdred-charlie ext4 defaults 0 2" /etc/fstab
 fi
 
 # setup nfs
