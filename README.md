@@ -42,7 +42,5 @@ BACKUP_PATH=/media/storage
 PGID=$(id -g $USER)
 PUID=$UID
 TZ="Europe/London"
-PIA_PASSWORD=M86J5mwtpr
-PIA_USERNAME=p2705804
 EOT
 ```

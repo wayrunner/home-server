@@ -6,35 +6,18 @@ echo "Updating and Upgrading"
 sudo apt-get update && sudo apt-get upgrade -y
 
 echo "Ensure required tools installed"
-sudo apt-get install \
-  apt-transport-https \
-  ca-certificates \
-  curl \
-  gnupg-agent \
-  software-properties-common \
-  git \
-  vim \
-  jq \
-  wireguard \
-  rpcbind \
-  nfs-kernel-server \
-  git \
-  samba
+sudo apt-get install apt-transport-https  ca-certificates curl  gnupg-agent software-properties-common git vim jq rpcbind nfs-kernel-server samba -y
 
 if [[ -z $(docker --version | grep 'Docker version') ]]; then
   echo "Install Docker"
   curl -sSL https://get.docker.com | sh
 
-  sudo apt-get install -y libffi-dev libssl-dev
+  sudo apt-get install -y libffi-dev libssl-dev  python3 python3-pip
 
-  sudo apt-get install -y python3 python3-pip
-
-  sudo apt-get remove python-configparser
+  sudo pip3 install docker-compose
 
   sudo groupadd docker
   sudo usermod -aG docker $USER
-
-  sudo pip3 install docker-compose
 
   sudo systemctl enable docker
 fi
@@ -66,12 +49,8 @@ fi
 if [[ -z $(sudo cat /etc/fstab | grep 'alpha') ]]; then
   echo "Update fstab"
   sudo mkdir /media/wdred-alpha
-  sudo mkdir /media/wdred-bravo
-  sudo mkdir /media/wdred-charlie
 
-  sudo sed -i "\$a/dev/disk/by-uuid/7019D702-A0D9-43A1-B387-36FF076FB0C8 /media/wdred-alpha ext4 defaults 0 2" /etc/fstab
-#  sudo sed -i "\$a/dev/disk/by-uuid/02459b4b-6fbd-4edc-8f1e-8450fa3d55ee /media/wdred-bravo ext4 defaults 0 2" /etc/fstab
-#  sudo sed -i "\$a/dev/disk/by-uuid/40678ee1-1a47-4e6f-baca-7d1befeb99c5 /media/wdred-charlie ext4 defaults 0 2" /etc/fstab
+  sudo sed -i "\$aUUID=0380-C0F7 /media/wdred-alpha vfat user,owner,utf8,rw,umask=000 0 0" /etc/fstab
 fi
 
 # setup nfs
