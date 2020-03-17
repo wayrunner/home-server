@@ -40,18 +40,8 @@ services:
     ports:
     - "7878:7878"
     environment:
-      PGID: 1000
-      PUID: 1000
-    restart: unless-stopped
-
-
-  # Tor proxy so jackett can bypass ISP filters (NOT for anonymity - use something like Tails for that)
-  torproxy:
-    container_name: torproxy
-    image: rdsubhas/tor-privoxy-alpine
-    ports:
-      - "8118:8118"
-      - "9050:9050"
+      PGID: $PGID
+      PUID: $PUID
     restart: unless-stopped
 
   transmission:
@@ -92,7 +82,7 @@ services:
       - PGID=$PGID
       - VERSION=docker
     volumes:
-      - ${CONTAINERS_CONFIG_PATH}/plex:/config
+      - ${PLEX_CONFIG_PATH}:/config
       - ${TV_DESTINATION_PATH}:/tv
       - ${MOVIE_DESTINATION_PATH}:/movies
     restart: unless-stopped

@@ -49,8 +49,10 @@ fi
 if [[ -z $(sudo cat /etc/fstab | grep 'alpha') ]]; then
   echo "Update fstab"
   sudo mkdir /media/wdred-alpha
+  sudo mkdir /media/wdred-bravo
 
-  sudo sed -i "\$aUUID=0380-C0F7 /media/wdred-alpha vfat user,owner,utf8,rw,umask=000 0 0" /etc/fstab
+  sudo sed -i "\$aUUID=FDBA-B719 /media/wdred-alpha vfat user,owner,utf8,rw,umask=000 0 0" /etc/fstab
+  sudo sed -i "\$aUUID=0380-C0F7 /media/wdred-bravo vfat user,owner,utf8,rw,umask=000 0 0" /etc/fstab
 fi
 
 # setup nfs
@@ -60,7 +62,6 @@ if [[ -z $(sudo cat /etc/exports | grep 'alpha') ]]; then
   sudo touch /etc/exports
   sudo sed -i "\$a/media/wdred-alpha 192.168.0.0/255.255.255.0(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)" /etc/exports
   sudo sed -i "\$a/media/wdred-bravo 192.168.0.0/255.255.255.0(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)" /etc/exports
-  sudo sed -i "\$a/media/wdred-charlie 192.168.0.0/255.255.255.0(rw,async,insecure,no_subtree_check,all_squash,anonuid=1000,anongid=1000)" /etc/exports
   sudo systemctl start nfs-kernel-server.service
 fi
 
