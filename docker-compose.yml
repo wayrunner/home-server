@@ -96,10 +96,10 @@ services:
 ##      - "5353:5353/udp"
 #      - "1900:1900/udp"
 
-#  torproxy:
-#    container_name: torproxy
-#    image: schopenhauer/torpedo
-#    ports:
-#      - "8118:8118"
-#      - "9050:9050"
-#    restart: unless-stopped
+  torproxy:
+    container_name: torproxy
+    image: schopenhauer/torpedo
+    ports:
+      - "8118:8118"
+      - "9050:9050"
+    restart: unless-stopped
