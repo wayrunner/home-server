@@ -73,6 +73,7 @@ services:
       OPENVPN_OPTS: --inactive 3600 --ping 10 --ping-exit 60
       PGID: $PGID
       PUID: $PUID
+      LOCAL_NETWORK: 192.168.1.0/24
 
   plex:
     image: jaymoulin/plex
