@@ -7,7 +7,7 @@ services:
     volumes:
       - ${CONTAINERS_CONFIG_PATH}/sonarr:/config
       - ${TV_DESTINATION_PATH}:/tv
-      - ${PROCESSING_PATH}/downloads:/downloads
+      - ${PROCESSING_PATH}/completed:/downloads
     ports:
       - "8989:8989"
     environment:
@@ -36,9 +36,9 @@ services:
     volumes:
     - ${CONTAINERS_CONFIG_PATH}/radarr:/config
     - ${MOVIE_DESTINATION_PATH}:/movies
-    - ${PROCESSING_PATH}/downloads:/downloads
+    - ${PROCESSING_PATH}/completed:/downloads
     ports:
-    - "7878:7878"
+    - 7878:7878"
     environment:
       PGID: $PGID
       PUID: $PUID
@@ -60,8 +60,9 @@ services:
       - 8.8.8.8
       - 8.8.4.4
     volumes:
-      - ${TV_DESTINATION_PATH}/downloads:/data/completed
-      - ${PROCESSING_PATH}/downloads:/downloads
+      - ${CONTAINERS_CONFIG_PATH}/transmission:/data/transmission-home
+      - ${PROCESSING_PATH}/completed:/data/completed
+      - ${PROCESSING_PATH}/incomplete:/data/incomplete
       - ${PROCESSING_PATH}/jackett-downloads:/data/watch
     environment:
       OPENVPN_PROVIDER: "PIA"
@@ -74,6 +75,7 @@ services:
       PGID: $PGID
       PUID: $PUID
       LOCAL_NETWORK: 192.168.1.0/24
+      TRANSMISSION_WEB_UI: combustion
 
 #  plex:
 #    image: jaymoulin/plex
@@ -95,11 +97,3 @@ services:
 #      - "32469:32469/udp"
 ##      - "5353:5353/udp"
 #      - "1900:1900/udp"
-
-#  torproxy:
-#    container_name: torproxy
-#    image: schopenhauer/torpedo
-#    ports:
-#      - "8118:8118"
-#      - "9050:9050"
-#    restart: unless-stopped
