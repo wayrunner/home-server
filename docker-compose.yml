@@ -70,7 +70,6 @@ services:
       OPENVPN_PASSWORD: $PIA_PASSWORD
       TRANSMISSION_WATCH_DIR: /watch
       TRANSMISSION_WATCH_DIR_ENABLED: "true"
-      TRANSMISSION_DOWNLOAD_DIR: /downloads
       OPENVPN_OPTS: --inactive 3600 --ping 10 --ping-exit 60
       PGID: $PGID
       PUID: $PUID
