@@ -38,7 +38,7 @@ services:
     - ${MOVIE_DESTINATION_PATH}:/movies
     - ${PROCESSING_PATH}/completed:/downloads
     ports:
-    - 7878:7878"
+    - "7878:7878"
     environment:
       PGID: $PGID
       PUID: $PUID
