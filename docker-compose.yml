@@ -76,6 +76,21 @@ services:
       LOCAL_NETWORK: 192.168.1.0/24
       TRANSMISSION_WEB_UI: combustion
 
+  bazarr:
+    image: linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ${CONTAINERS_CONFIG_PATH}/bazarr:/config
+      - ${MOVIES_DESTINATION_PATH}:/movies
+      - ${TV_DESTINATION_PATH}:/tv
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+
   plex:
     image: jaymoulin/plex
     container_name: plex
