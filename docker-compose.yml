@@ -85,7 +85,7 @@ services:
       - TZ=Europe/London
     volumes:
       - ${CONTAINERS_CONFIG_PATH}/bazarr:/config
-      - ${MOVIES_DESTINATION_PATH}:/movies
+      - ${MOVIE_DESTINATION_PATH}:/movies
       - ${TV_DESTINATION_PATH}:/tv
     ports:
       - 6767:6767
