@@ -78,7 +78,20 @@ if [[ -z $(sudo cat /etc/samba/smb.conf | grep 'alpha') ]]; then
   sudo -- bash -c 'echo  "  browsable = yes" >> /etc/samba/smb.conf'
   sudo -- bash -c 'echo  "  guest only = yes" >> /etc/samba/smb.conf'
   sudo -- bash -c 'echo  "  guest ok = yes" >> /etc/samba/smb.conf'
+  sudo -- bash -c 'echo  "  public = yes" >> /etc/samba/smb.conf'
   sudo service smbd restart
+fi
+
+# setup DLNA
+echo "Setup minidlna"
+if [[ -z $(sudo cat /etc/samba/smb.conf | grep 'alpha') ]]; then
+  echo "Update smb.conf"
+  sudo -- bash -c 'echo  "media_dir=V,/media/wdred-bravo/home-server/tv" >> /etc/minidlna.conf'
+  sudo -- bash -c 'echo  "media_dir=V,/media/wdred-bravo/home-server/movies" >> /etc/minidlna.conf'
+  sudo -- bash -c 'echo  "friendly_name=Pi" >> /etc/minidlna.conf'
+  sudo -- bash -c 'echo  "inotify=yes" >> /etc/minidlna.conf'
+  sudo minidlnad -R
+ sudo service minidlna restart
 fi
 
 # setup wireguard
