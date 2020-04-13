@@ -121,17 +121,24 @@ services:
     restart: unless-stopped
 
   wireguard:
-    image: cmulk/wireguard-docker
-    volumes:
-      - ${CONTAINERS_CONFIG_PATH}/wireguard:/etc/wireguard
-    networks:
-      - net
-    ports:
-      - 60001:60001/udp
-    restart: unless-stopped
+    image: linuxserver/wireguard
+    container_name: wireguard
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
-      -
-networks:
-  net:
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+#      - SERVERURL=wireguard.domain.com #optional
+#      - SERVERPORT=60001 #optional
+#      - PEERS=1 #optional
+#      - PEERDNS=auto #optional
+#      - INTERNAL_SUBNET=10.13.13.0 #optional
+    volumes:
+      - ${CONTAINERS_CONFIG_PATH}/wireguard:/config
+    ports:
+      - 60001:60001/udp
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: unless-stopped
