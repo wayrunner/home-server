@@ -119,3 +119,19 @@ services:
       - "8118:8118"
       - "9050:9050"
     restart: unless-stopped
+
+  wireguard:
+    image: cmulk/wireguard-docker
+    volumes:
+      - ${CONTAINERS_CONFIG_PATH}/wireguard:/etc/wireguard
+    networks:
+      - net
+    ports:
+      - 60001:60001/udp
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+      -
+networks:
+  net:
