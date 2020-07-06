@@ -21,6 +21,11 @@ network={
 }
 ```
 
+Minidlna
+--------
+`sudo apt install minidlna`
+To make it scan files on an exteranl harddrive: `sudo usermod -a -G pi minidlna`
+
 What is installed
 -----------------
 
