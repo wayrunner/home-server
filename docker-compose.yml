@@ -102,6 +102,7 @@ services:
     volumes:
       - ${PLEX_CONFIG_PATH}:/root/Library
       - ${TV_DESTINATION_PATH}:/media/tv
+      - ${AUDIOBOOKS_DESTINATION_PATH}:/media/tv
       - ${MOVIE_DESTINATION_PATH}:/media/movies
     restart: unless-stopped
     ports:
@@ -120,25 +121,43 @@ services:
       - "9050:9050"
     restart: unless-stopped
 
-  wireguard:
-    image: linuxserver/wireguard
-    container_name: wireguard
+#  wireguard:
+#    image: linuxserver/wireguard
+#    container_name: wireguard
+#    cap_add:
+#      - NET_ADMIN
+#      - SYS_MODULE
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+#      - TZ=Europe/London
+##      - SERVERURL=wireguard.domain.com #optional
+##      - SERVERPORT=60001 #optional
+##      - PEERS=1 #optional
+##      - PEERDNS=auto #optional
+##      - INTERNAL_SUBNET=10.13.13.0 #optional
+#    volumes:
+#      - ${CONTAINERS_CONFIG_PATH}/wireguard:/config
+#    ports:
+#      - 60001:60001/udp
+#    sysctls:
+#      - net.ipv4.conf.all.src_valid_mark=1
+#    restart: unless-stopped
+
+  openvpn:
+    image: linuxserver/openvpn-as
+    container_name: openvpn-as
     cap_add:
       - NET_ADMIN
-      - SYS_MODULE
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-#      - SERVERURL=wireguard.domain.com #optional
-#      - SERVERPORT=60001 #optional
-#      - PEERS=1 #optional
-#      - PEERDNS=auto #optional
-#      - INTERNAL_SUBNET=10.13.13.0 #optional
+#      - INTERFACE=eth0 #optional
     volumes:
-      - ${CONTAINERS_CONFIG_PATH}/wireguard:/config
+      - ${CONFIG_PATH}:/config
     ports:
-      - 60001:60001/udp
-    sysctls:
-      - net.ipv4.conf.all.src_valid_mark=1
+      - 943:943
+      - 9443:9443
+      - 1194:1194/udp
     restart: unless-stopped
